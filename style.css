@@ -40,11 +40,15 @@ main {
 }
 
 .product-image {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 220px;
+    /* altura fixa padronizada */
     object-fit: contain;
-    background-color: #f8f8f8;
+    /* mostra toda a imagem sem cortar */
+    background-color: #fff;
+    display: block;
 }
+
 
 .product-info {
     padding: 1.5rem;

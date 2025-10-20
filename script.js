@@ -10,7 +10,7 @@ function formatPrice(price) {
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
-    
+
     card.innerHTML = `
         <img src="${product.thumbnail}" alt="${product.title}" class="product-image" loading="lazy">
         <div class="product-info">
@@ -21,33 +21,33 @@ function createProductCard(product) {
             </a>
         </div>
     `;
-    
+
     return card;
 }
 
 // Função para carregar e exibir os produtos
 async function loadProducts() {
     const productList = document.getElementById('product-list');
-    
+
     try {
         // Mostrar loading
         productList.innerHTML = '<div class="loading">Carregando produtos...</div>';
-        
+
         // Carregar dados dos produtos
         const response = await fetch('products_details.json');
         if (!response.ok) {
             throw new Error('Erro ao carregar dados dos produtos');
         }
-        
+
         const products = await response.json();
-        
+
         // Limpar loading
         productList.innerHTML = '';
-        
+
         // Criar container grid
         const grid = document.createElement('div');
         grid.className = 'product-grid';
-        
+
         // Adicionar cada produto
         products.forEach(product => {
             if (product.title && product.price && product.permalink) {
@@ -55,9 +55,9 @@ async function loadProducts() {
                 grid.appendChild(card);
             }
         });
-        
+
         productList.appendChild(grid);
-        
+
         // Adicionar contador de produtos
         const counter = document.createElement('p');
         counter.style.textAlign = 'center';
@@ -66,7 +66,7 @@ async function loadProducts() {
         counter.style.color = '#666';
         counter.textContent = `${products.length} produtos encontrados`;
         productList.insertBefore(counter, grid);
-        
+
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
         productList.innerHTML = `
